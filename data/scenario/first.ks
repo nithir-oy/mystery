@@ -34,7 +34,7 @@
 [eval exp="f.found_saeko = false"]
 
 ; 4. タイトル画面を通さず直接テストする場合はコメントアウトを外してscene1へジャンプ
-[jump storage="scene1.ks"]
+; [jump storage="scene1.ks"]
 ; [jump storage=scene1.ks target=*talk_select]
 
 ; 5. 通常のゲームフロー（タイトル画面を表示する）
