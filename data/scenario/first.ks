@@ -7,6 +7,7 @@
 ; [clearstack]
 ; [cm]
 ; [hidemessage]
+[hidemenubutton]
 
 ; 2. キャラクター（立ち絵）の定義
 ; ※ image.pdfで決定されたファイル名・表情差分をここで一括登録します
