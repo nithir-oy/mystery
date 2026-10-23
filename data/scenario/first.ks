@@ -72,7 +72,7 @@
 [clearstack]
 @layopt layer="message" visible=false
 
-[playse storage=clock_ticking.mp3 volume=10 loop=true ]
+[playse storage=clock_ticking.mp3 volume=20 loop=true ]
 [wait time=500]
 [bg storage="room_dark.jpg" time="2000"]
 
