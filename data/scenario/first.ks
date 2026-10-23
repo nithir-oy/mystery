@@ -27,6 +27,7 @@
 [chara_face name="ren" face="agitation" storage="ren_agitation.png"]
 ; 【v2】新規差分：視線をそらす（画像の追加が必要）
 [chara_face name="ren" face="avert" storage="ren_avert.png"]
+[chara_face name="ren" face="fear" storage="ren_fear.png"]
 
 [chara_new name="saeko" jname="橘 冴子" storage="saeko_normal.png"]
 [chara_face name="saeko" face="normal" storage="saeko_normal.png"]
@@ -216,7 +217,7 @@
 [wait time=1000]
 
 【主人公】
-（狂ってる……！ だが、やるしかない。）[r]（自分は絶対に犯人じゃない。）[r]
+（狂ってる……！ だが、やるしかない。）[r]（自分は絶対に犯人じゃない。）[p]
 ; 【v2】追加（任意）：主人公のグレーな部分の伏線
 （……ただ、あの夜のことには、触れたくない部分がある。）[r]
 （資料を読み、3人の証言から【矛盾】を見つけ出すんだ！）[p]
