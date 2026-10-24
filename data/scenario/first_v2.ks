@@ -1,42 +1,45 @@
 ; =========================================================
-; ゲーム起動時・最初期化ファイル (first.ks)
+; ゲーム起動時・最初期化ファイル (first_v2.ks)
+; ※ first.ks からの改変版。変更箇所には【v2】のコメントを付けています。
 ; =========================================================
 
 ; 1. システムの初期化・画面クリア
 ; [clearstack]
 ; [cm]
 ; [hidemessage]
-[hidemenubutton]
 
 ; 2. キャラクター（立ち絵）の定義
 ; ※ image.pdfで決定されたファイル名・表情差分をここで一括登録します
 [chara_new name="rin" jname="神崎 凛" storage="rin_normal.png"]
 [chara_face name="rin" face="normal" storage="rin_normal.png"]
-[chara_face name="rin" face="agitation" storage="rin_agitation.png"]
 [chara_face name="rin" face="anxiety" storage="rin_anxiety.png"]
+[chara_face name="rin" face="agitation" storage="rin_agitation.png"]
 [chara_face name="rin" face="anger" storage="rin_anger.png"]
 [chara_face name="rin" face="suspicion" storage="rin_suspicion.png"]
+; 【v2】新規差分：不自然に落ち着いた微笑（画像の追加が必要）
 [chara_face name="rin" face="calm" storage="rin_calm.png"]
 
 [chara_new name="ren" jname="一条 蓮" storage="ren_normal.png"]
 [chara_face name="ren" face="normal" storage="ren_normal.png"]
-[chara_face name="ren" face="agitation" storage="ren_agitation.png"]
 [chara_face name="ren" face="anxiety" storage="ren_anxiety.png"]
 [chara_face name="ren" face="anger" storage="ren_anger.png"]
-[chara_face name="ren" face="calm" storage="ren_calm.png"]
+[chara_face name="ren" face="agitation" storage="ren_agitation.png"]
+; 【v2】新規差分：視線をそらす（画像の追加が必要）
 [chara_face name="ren" face="avert" storage="ren_avert.png"]
-[chara_face name="ren" face="fear" storage="ren_fear.png"]
 
 [chara_new name="saeko" jname="橘 冴子" storage="saeko_normal.png"]
 [chara_face name="saeko" face="normal" storage="saeko_normal.png"]
 [chara_face name="saeko" face="anxiety" storage="saeko_anxiety.png"]
 [chara_face name="saeko" face="anger" storage="saeko_anger.png"]
 [chara_face name="saeko" face="suspicion" storage="saeko_suspicion.png"]
+; 【v2】新規差分：覚悟を決めた硬い表情（画像の追加が必要）
+[chara_face name="saeko" face="resolve" storage="saeko_resolve.png"]
 
 ; 3. ゲーム内変数の初期化（必要に応じて）
 [eval exp="f.found_rin = false"]
 [eval exp="f.found_ren = false"]
 [eval exp="f.found_saeko = false"]
+; 【v2】推理パート用のフラグ初期化は、シーン構成・フラグ設計（ステップ3）でまとめて追加する
 
 ; 4. タイトル画面を通さず直接テストする場合はコメントアウトを外してscene1へジャンプ
 ; [jump storage="scene1.ks"]
@@ -88,7 +91,7 @@
 [chara_config ptext="chara_name_area"]
 
 ; [position layer=message0 width=778 height=193 top=520 left=70 ]
-[position layer=message0 width=1000 height=190 top=520 left=220 ]
+[position layer=message0 width=1000 height=190 top=520 left=70 ]
 [position layer=message0 page=fore frame="frame03.png" margint="10" marginl="40" marginr="40" marginb="60"]
 
 【？？？】
@@ -100,7 +103,7 @@
 ; 明かりがつき、背景切り替えと立ち絵表示
 [bg storage="room_light.jpg" time="800"]
 
-[chara_show name="rin" face="agitation" left="50" top="220" time="500"]
+[chara_show name="rin" face="normal" left="50" top="250" time="500"]
 [chara_show name="ren" face="normal" left="320" top="100" time="500"]
 [chara_show name="saeko" face="suspicion" left="850" top="130" time="500"]
 
@@ -122,9 +125,10 @@
 【橘 冴子】
 「落ち着きなさい。パニックになっても状況は変わらないわ……。」[p]
 
-[chara_mod name="ren" face="avert"]
+[chara_mod name="ren" face="agitation"]
 【一条 蓮】
-「チッ。。」[p]
+; 【v2】「チッ。。」を「チッ……」に修正
+「チッ……」[p]
 
 （神崎 凛がまだ何か言いたげに、こちらを見ている。）[p]
 
@@ -138,7 +142,7 @@
 『……聞こえるか、4人の容疑者共。』[p]
 
 [chara_mod name="rin" face="anxiety"]
-[chara_mod name="ren" face="fear"]
+[chara_mod name="ren" face="anxiety"]
 [chara_mod name="saeko" face="anxiety"]
 【一条 蓮】
 「なっ、なんだ！？ どこから声が……！？」[p]
@@ -159,8 +163,8 @@
 「待て、一旦落ち着こう。」[l][r]
 「とりあえず指示に従うしかなさそうだ。」[p]
 
-[chara_mod name="rin" face="suspicion"]
-[chara_mod name="ren" face="avert"]
+[chara_mod name="rin" face="normal"]
+[chara_mod name="ren" face="agitation"]
 [chara_mod name="saeko" face="normal"]
 
 [wait time=1000]
@@ -189,18 +193,31 @@
 【橘 冴子】
 「私だってそうよ！」[p]
 
+; 【v2】追加：蓮と冴子が怒る中で、凛だけが落ち着いている（観察の最初の種）
+[chara_mod name="rin" face="calm"]
+【神崎 凛】
+「……私も、そう聞いています。」[p]
+
 [playse storage="noise.mp3"]
 【スピーカーの声】[r]
 『12時間以内に資料と議論から矛盾を突き、真犯人を特定しろ。』[p]
+
+; 【v2】追加：観察メモの仕組みの導入
+[playse storage="noise.mp3"]
+【スピーカーの声】[r]
+『資料だけを見るな。人間は、顔と手に、嘘が出る。』[p]
 
 [playse storage="noise.mp3"]
 【スピーカーの声】[r]
 『出来なければ……部屋に毒ガスを注入し、全員死亡する。』[p]
 
+; 【v2】ここで画面右上の時計UIを表示し、12時間のカウントを開始する（時計UIの実装は別途）
 [wait time=1000]
 
 【主人公】
 （狂ってる……！ だが、やるしかない。）[r]（自分は絶対に犯人じゃない。）[r]
+; 【v2】追加（任意）：主人公のグレーな部分の伏線
+（……ただ、あの夜のことには、触れたくない部分がある。）[r]
 （資料を読み、3人の証言から【矛盾】を見つけ出すんだ！）[p]
 
 [chara_hide_all time=200 wait=true]

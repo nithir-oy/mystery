@@ -36,4 +36,4 @@ font_family = "sans-serif"
 ; 初期シナリオファイルの設定
 ; ---------------------------------------------------------
 ; ゲーム起動時に最初に読み込むファイル（通常は first.ks）
-first_scenario = "first.ks"
+first_scenario = "first_v2.ks"
